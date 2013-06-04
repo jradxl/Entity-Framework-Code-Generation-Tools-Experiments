@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EFUtility.CodeGenerationTools.MetadataTools">
+    <Position X="3.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAIAggIIAABAAAAIAoAABgAAAAAAEAgAAAgAHIAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.MetadataTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.Accessibility">
+    <Position X="3.75" Y="6" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAABAAAAAAAgAAQIAEQQQAIgAAAAgEAAgAIAIAYAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.Accessibility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.CodeRegion">
+    <Position X="7.5" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgIAAAAAAAAAAAQAAAAAAAAAwBAAEAAAAAAACAAABAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.CodeRegion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.CodeGenerationTools">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAEAAAIAQOBkBAAECAAiAABAiACBAQAEAgCAAAAgABA=</HashCode>
+      <FileName>EfUtility.CodeGenerationTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.DynamicHost" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAgEAAAAAAAAAAAEACAAAAAAAAAAABCAAAhAAAAAAAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.DynamicAndNullHost.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.NullHost" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="9" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAEACAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.DynamicAndNullHost.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.DynamicTextTransformation">
+    <Position X="0.75" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAQAAABAEQAIAAAAEAAAAgAACEAAAAAABCEAAAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.DynamicTextTransformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.EntityFrameworkTemplateFileManager">
+    <Position X="15" Y="0.5" Width="2.75" />
+    <NestedTypes>
+      <Class Name="EFUtility.CodeGenerationTools.EntityFrameworkTemplateFileManager.Block" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EFUtility.CodeGenerationTools.EntityFrameworkTemplateManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="EFUtility.CodeGenerationTools.EntityFrameworkTemplateFileManager.VsEntityFrameworkTemplateFileManager" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EFUtility.CodeGenerationTools.EntityFrameworkTemplateManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAgQAAAQAAABAAgQAMAAAgAAAAEgAAAAIgAAABAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.EntityFrameworkTemplateManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.FunctionImportParameter">
+    <Position X="11" Y="5" Width="2.25" />
+    <NestedTypes>
+      <Class Name="EFUtility.CodeGenerationTools.FunctionImportParameter.UniqueIdentifierService" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EFUtility.CodeGenerationTools.FunctionImportParameter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAAUBAAEAAAAAAAgEAAAAQAAAAAIAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.FunctionImportParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.MetadataConstants">
+    <Position X="10.75" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>gIAAAQCgACAAQAAAAAAAACAAAAQWAGAAEACAAAAAAIA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.MetadataAndSchemaConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EFUtility.CodeGenerationTools.MetadataLoader">
+    <Position X="7.25" Y="0.5" Width="3" />
+    <NestedTypes>
+      <Class Name="EFUtility.CodeGenerationTools.MetadataLoader.ItemCollectionBuilder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EFUtility.CodeGenerationTools.MetadataLoader.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="EFUtility.CodeGenerationTools.MetadataLoader.StorageMappingItemCollectionBuilder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EFUtility.CodeGenerationTools.MetadataLoader.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="EFUtility.CodeGenerationTools.MetadataLoader.StoreItemCollectionBuilder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EFUtility.CodeGenerationTools.MetadataLoader.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="EFUtility.CodeGenerationTools.MetadataLoader.EdmItemCollectionBuilder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EFUtility.CodeGenerationTools.MetadataLoader.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAIAAkACAAAAAAAAEAAAgAgABAAAAQAAAAAAAAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.MetadataLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="EFUtility.CodeGenerationTools.SchemaConstants">
+    <Position X="16" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAQABAg=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.MetadataAndSchemaConstants.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="EFUtility.CodeGenerationTools.IDynamicHost">
+    <Position X="13.75" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAEACAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>EFUtility.CodeGenerationTools.DynamicAndNullHost.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

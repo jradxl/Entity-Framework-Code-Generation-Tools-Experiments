@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="People" EntityType="Model1.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Phones" EntityType="Model1.Store.Phones" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonInfoes" EntityType="Model1.Store.PersonInfoes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Addresses" EntityType="Model1.Store.Addresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonAddress" EntityType="Model1.Store.PersonAddress" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PersonPhone" Association="Model1.Store.PersonPhone">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Phone" EntitySet="Phones" />
+    </AssociationSet>
+    <AssociationSet Name="PersonPersonInfo" Association="Model1.Store.PersonPersonInfo">
+      <End Role="Person" EntitySet="People" />
+      <End Role="PersonInfo" EntitySet="PersonInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonAddress_Person" Association="Model1.Store.FK_PersonAddress_Person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="PersonAddress" EntitySet="PersonAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonAddress_Address" Association="Model1.Store.FK_PersonAddress_Address">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="PersonAddress" EntitySet="PersonAddress" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lastname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Firstname" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Phones">
+    <Key>
+      <PropertyRef Name="PhoneID" />
+    </Key>
+    <Property Name="PhoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersonID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonInfoes">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Data2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Person_PersonID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Addresses">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address3" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Postcode" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonAddress">
+    <Key>
+      <PropertyRef Name="People_PersonID" />
+      <PropertyRef Name="Addresses_AddressID" />
+    </Key>
+    <Property Name="People_PersonID" Type="int" Nullable="false" />
+    <Property Name="Addresses_AddressID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PersonPhone">
+    <End Role="Person" Type="Model1.Store.People" Multiplicity="1" />
+    <End Role="Phone" Type="Model1.Store.Phones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonPersonInfo">
+    <End Role="Person" Type="Model1.Store.People" Multiplicity="1" />
+    <End Role="PersonInfo" Type="Model1.Store.PersonInfoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="PersonInfo">
+        <PropertyRef Name="Person_PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonAddress_Person">
+    <End Role="Person" Type="Model1.Store.People" Multiplicity="1" />
+    <End Role="PersonAddress" Type="Model1.Store.PersonAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="PersonAddress">
+        <PropertyRef Name="People_PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonAddress_Address">
+    <End Role="PersonAddress" Type="Model1.Store.PersonAddress" Multiplicity="*" />
+    <End Role="Address" Type="Model1.Store.Addresses" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="PersonAddress">
+        <PropertyRef Name="Addresses_AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="People" EntityType="Model1.Person" />
+          <EntitySet Name="Phones" EntityType="Model1.Phone" />
+          <AssociationSet Name="PersonPhone" Association="Model1.PersonPhone">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Phone" EntitySet="Phones" />
+          </AssociationSet>
+          <EntitySet Name="PersonInfoes" EntityType="Model1.PersonInfo" />
+          <AssociationSet Name="PersonPersonInfo" Association="Model1.PersonPersonInfo">
+            <End Role="Person" EntitySet="People" />
+            <End Role="PersonInfo" EntitySet="PersonInfoes" />
+          </AssociationSet>
+          <EntitySet Name="Addresses" EntityType="Model1.Address" />
+          <AssociationSet Name="PersonAddress" Association="Model1.PersonAddress">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Type="Int32" Name="PersonID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Lastname" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="Firstname" Nullable="false" MaxLength="Max" />
+          <NavigationProperty Name="Phones" Relationship="Model1.PersonPhone" FromRole="Person" ToRole="Phone" />
+          <NavigationProperty Name="PersonInfoes" Relationship="Model1.PersonPersonInfo" FromRole="Person" ToRole="PersonInfo" />
+          <NavigationProperty Name="Addresses" Relationship="Model1.PersonAddress" FromRole="Person" ToRole="Address" /><a:CslaClassTemplate xmlns:a="http://schemas.tempuri.com/CslaEntityExtension">EditableRoot</a:CslaClassTemplate><a:CslaEntityEquals xmlns:a="http://schemas.tempuri.com/CslaEntityExtension">Yes</a:CslaEntityEquals><a:CslaClassNamespace xmlns:a="http://schemas.tempuri.com/CslaEntityExtension">CSLABusinessLayer</a:CslaClassNamespace><a:CslaCollectionName xmlns:a="http://schemas.tempuri.com/CslaEntityExtension">CslaCollectionNamespace</a:CslaCollectionName>
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="PhoneID" />
+          </Key>
+          <Property Type="Int32" Name="PhoneID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="Max" />
+          <NavigationProperty Name="Person" Relationship="Model1.PersonPhone" FromRole="Phone" ToRole="Person" />
+          <Property Type="Int32" Name="PersonID" Nullable="false" /><a:CslaClassNamespace xmlns:a="http://schemas.tempuri.com/CslaEntityExtension">CslaClassNamespace</a:CslaClassNamespace><a:CslaClassTemplate xmlns:a="http://schemas.tempuri.com/CslaEntityExtension">EditableChildList</a:CslaClassTemplate><a:CslaCollectionName xmlns:a="http://schemas.tempuri.com/CslaEntityExtension">CslaCollectionNamespace</a:CslaCollectionName><a:CslaEntityEquals xmlns:a="http://schemas.tempuri.com/CslaEntityExtension">Yes</a:CslaEntityEquals>
+        </EntityType>
+        <Association Name="PersonPhone">
+          <End Type="Model1.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model1.Phone" Role="Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PersonInfo">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Type="Int32" Name="PersonID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Data1" Nullable="false" />
+          <Property Type="String" Name="Data2" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model1.PersonPersonInfo" FromRole="PersonInfo" ToRole="Person" />
+        </EntityType>
+        <Association Name="PersonPersonInfo">
+          <End Type="Model1.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model1.PersonInfo" Role="PersonInfo" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Type="Int32" Name="AddressID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Address1" Nullable="false" />
+          <Property Type="String" Name="Address2" Nullable="false" />
+          <Property Type="String" Name="Address3" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="false" />
+          <Property Type="String" Name="Country" Nullable="false" />
+          <Property Type="String" Name="Postcode" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="Model1.PersonAddress" FromRole="Address" ToRole="Person" />
+        </EntityType>
+        <Association Name="PersonAddress">
+          <End Type="Model1.Person" Role="Person" Multiplicity="*" />
+          <End Type="Model1.Address" Role="Address" Multiplicity="*" />
+        </Association><a:CslaUseNullableTypes xmlns:a="http://schemas.tempuri.com/CslaDesignerExtension">False</a:CslaUseNullableTypes><a:CslaNamespace xmlns:a="http://schemas.tempuri.com/CslaDesignerExtension">CSLABusinessLayer</a:CslaNamespace><a:CslaEntitiesNamespace xmlns:a="http://schemas.tempuri.com/CslaDesignerExtension">CslaDALNamespace</a:CslaEntitiesNamespace><a:CslaDesignerEquals xmlns:a="http://schemas.tempuri.com/CslaDesignerExtension">Yes</a:CslaDesignerEquals><a:CslaUseDbContext xmlns:a="http://schemas.tempuri.com/CslaDesignerExtension">Yes</a:CslaUseDbContext><a:CslaMultipleFiles xmlns:a="http://schemas.tempuri.com/CslaDesignerExtension">EachClassInSeparateFile</a:CslaMultipleFiles>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Person)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phones">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Phone)">
+        <MappingFragment StoreEntitySet="Phones">
+          <ScalarProperty Name="PhoneID" ColumnName="PhoneID" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonInfoes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.PersonInfo)">
+        <MappingFragment StoreEntitySet="PersonInfoes">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="Data1" ColumnName="Data1" />
+          <ScalarProperty Name="Data2" ColumnName="Data2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Address)">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PersonPersonInfo" TypeName="Model1.PersonPersonInfo" StoreEntitySet="PersonInfoes">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="PersonID" ColumnName="Person_PersonID" />
+      </EndProperty>
+      <EndProperty Name="PersonInfo">
+        <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonAddress" TypeName="Model1.PersonAddress" StoreEntitySet="PersonAddress">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="PersonID" ColumnName="People_PersonID" />
+      </EndProperty>
+      <EndProperty Name="Address">
+        <ScalarProperty Name="AddressID" ColumnName="Addresses_AddressID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="CopyToOutputDirectory" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="e8dfcc7815bf4a1bbecc2e860041859d" Name="Diagram1">
+        <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="0.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.Phone" Width="1.5" PointX="6.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.PersonInfo" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.Address" Width="1.5" PointX="5.875" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Model1.PersonPhone" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.PersonPersonInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.PersonAddress" ManuallyRouted="false" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

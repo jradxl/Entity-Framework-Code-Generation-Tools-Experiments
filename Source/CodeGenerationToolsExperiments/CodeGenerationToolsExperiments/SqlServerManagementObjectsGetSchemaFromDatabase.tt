@@ -1,0 +1,77 @@
+﻿<#//****************************** #>
+<#//From http://stackoverflow.com/questions/853173/existing-t4-database-helpers-for-db-schema-retrieval #>
+<#//And  http://highoncoding.com/Articles/557_Code_Generation_Using_T4_Templates.aspx #>
+<#//****************************** #>
+<#@ template language="C#" hostspecific="True" debug="True" #> 
+<#@ output extension="cs" #>
+<#@ assembly name="Microsoft.SqlServer.ConnectionInfo" #>
+<#@ assembly name="Microsoft.SqlServer.Smo" #>
+<#@ assembly name="Microsoft.SqlServer.Management.Sdk.sfc" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Data" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Smo" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Common" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Collections.Specialized" #>
+<#
+var ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=TestDummy1;Integrated Security=True;";
+SqlConnection cn = new SqlConnection(ConnectionString);
+var DatabaseName = cn.Database;
+Server server = new Server(new ServerConnection(cn));
+Database database = server.Databases[cn.Database];
+database.Refresh();
+#>
+using System;
+using System.Data;
+namespace dbSchema{
+    public static class Tables
+        {        
+<#
+foreach (Table table in database.Tables)
+{
+#>
+<#    if (!table.IsSystemObject) {                
+#> 
+            public static class <#=table.Name.Replace(" ","_") #> {
+                public static string Name = "<#=table.Name#>";
+                public static class Columns {
+        <#
+        for (int i = 0; i < table.Columns.Count; i++)
+        {
+#>          public static Column <#=table.Columns[i].Name #>= new Column("<#=table.Columns[i].Name #>",<#=table.Columns[i].Nullable?"true":"false"#>,"<#=table.Columns[i].DataType#>",<#=table.Columns[i].DataType.ToString().Contains("char")?table.Columns[i].DataType.MaximumLength.ToString():"null" #>);
+        <#
+        }
+        #>    
+                }
+            }
+<#      }
+}
+#>
+}
+ 
+    public class Column {
+        public Column(string columnName, bool isNullable, string dbType, int? maxlength)
+            {
+                IsNullable = isNullable;
+                SqlDbType = (SqlDbType)Enum.Parse(typeof(SqlDbType), dbType, true);
+                ColumnName = columnName;
+                MaxLength = maxlength;
+            }
+ 
+        public bool IsNullable { get; set; }
+ 
+        public SqlDbType SqlDbType { get; set; }
+ 
+        public int? MaxLength { get; set; }
+ 
+        public string ColumnName { get; set; }
+ 
+        public override string ToString()
+            {
+                return ColumnName;
+            }
+    }
+}
+ 
+<# 
+#>
